@@ -114,3 +114,6 @@ main {
 .featured {
     border-left: solid 6px hsl(180, 29%, 50%);
 }
+.none {
+    display: none;
+}

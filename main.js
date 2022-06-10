@@ -10,17 +10,26 @@ function getJobs() {
   xhr.onload = function(e) {
     if(this.status == 200) {
         const jobs = JSON.parse(this.responseText);
-        let output = '';
+        let output = featJob = featBox = newBox = '';
         jobs.forEach((job) => {
             console.log(job);
+            if(job.featured == true) {
+                featJob = 'featured';
+                featBox = '';
+            } else { 
+                featJob = '';
+                featBox = 'none';
+            }
+            if(job.new == true) { newBox = ''; }
+            else { newBox = 'none'; }
             output += `
-            <div class="job featured">
+            <div class="job ${featJob}">
                 <img class="job_logo" src="${job.logo}">
                 <div class="job_details">
                 <div class="details">
                     <span class="company">${job.company}</span>
-                    <span class="box light">New!</span>
-                    <span class="box dark">Featured</span>
+                    <span class="box light ${newBox}">New!</span>
+                    <span class="box dark ${featBox}">Featured</span>
                 </div>
                 <div class="details"><h1 class="title">${job.position}</h1></div>
                 <div class="details">
@@ -30,14 +39,17 @@ function getJobs() {
                 </div>
                 </div>
                 <div class="job_categories">
-                <div class="category">Frontend</div>
-                <div class="category">Senior</div>
-                <div class="category">HTML</div>
-                <div class="category">CSS</div>
-                <div class="category">JavaScript</div>
-                </div>
+                    <div class="category">${job.role}</div>
+                    <div class="category">${job.level}</div>`;
+                job.languages.forEach((lang) => {
+                    output+= `<div class="category">${lang}</div>`;
+                });
+                job.tools.forEach((tool) => {
+                    output+= `<div class="category">${tool}</div>`;
+                });
+                output += `</div>
             </div>
-        `;
+            `;
         });
         // document.querySelector('main').appendChild(output);
         document.querySelector('main').innerHTML = output;
