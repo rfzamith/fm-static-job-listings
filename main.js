@@ -18,10 +18,10 @@ function getJobs() {
                 featBox = '';
             } else { 
                 featJob = '';
-                featBox = 'none';
+                featBox = 'hidden';
             }
             if(job.new == true) { newBox = ''; }
-            else { newBox = 'none'; }
+            else { newBox = 'hidden'; }
             output += `
             <div class="job ${featJob}">
                 <img class="job_logo" src="${job.logo}">
@@ -52,7 +52,7 @@ function getJobs() {
             `;
         });
         // document.querySelector('main').appendChild(output);
-        document.querySelector('main').innerHTML = output;
+        document.querySelector('main').innerHTML += output;
 
 
         // const output = `<span id='joke'>${joke.value.joke}</span>`
