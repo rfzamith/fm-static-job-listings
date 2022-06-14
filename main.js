@@ -1,18 +1,17 @@
-getJobs();
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'data.json', true);
 
-// const startButton = document.querySelector('.button').addEventListener('click', getJoke);
+getJobs(xhr);
 
-function getJobs() {
-  
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'data.json', true);
-  
-  xhr.onload = function(e) {
+// Get jobs from array and show them in the web page
+function getJobs(a) {
+  a.onload = function(e) {
     if(this.status == 200) {
         const jobs = JSON.parse(this.responseText);
         let output = featJob = featBox = newBox = '';
+        document.querySelector('main').innerHTML = '';
         jobs.forEach((job) => {
-            console.log(job);
+            // console.log(job);
             if(job.featured == true) {
                 featJob = 'featured';
                 featBox = '';
@@ -60,6 +59,52 @@ function getJobs() {
     }
   }
 
-  xhr.send();
+  a.send();
   
+};
+
+// Filter jobs by categories that are selected
+
+document.querySelector('main').addEventListener('click', selectCategory);
+
+// Add category to filter bar
+
+function selectCategory(e) {
+    if(e.target.classList.contains('category')) {
+        const filterBar = document.querySelector('.filter_section');
+        const filterCat = document.querySelector('.filter_categories');
+
+        // If filter section empty, show filter bar and add category
+        if(filterCat.hasChildNodes() == false) {
+            filterBar.className = 'filter_section';
+            const newCat = document.createElement('div');
+            newCat.className = 'filtercategory';
+            newCat.innerHTML = `<span>${e.target.innerHTML}</span><img class="filter_button" src="./images/icon-remove.svg">`;
+            filterCat.appendChild(newCat); 
+        }
+
+        // If not empty, check if selected category in already in the filter bar
+        else {
+            if(filterCat.innerHTML.indexOf(e.target.innerHTML) == -1) {
+                const newCat = document.createElement('div');
+                newCat.className = 'filtercategory';
+                newCat.innerHTML = `<span>${e.target.innerHTML}</span><img class="filter_button" src="./images/icon-remove.svg">`;
+                filterCat.appendChild(newCat);
+            }
+        }
+
+        // Check which categories are currently selected
+        const newJobs = JSON.parse(xhr.responseText);
+        console.log(newJobs);    
+        getJobs(newjobs);
+    }
 }
+
+// Check which categories are currently selected
+// Use filter method on xhr array to show jobs in selected categories
+// Use sort method to sort by job date
+// run getJobs()
+
+// Clear button
+
+// Remove category
