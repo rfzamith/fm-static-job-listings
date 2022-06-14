@@ -38,13 +38,13 @@ function getJobs(a) {
                 </div>
                 </div>
                 <div class="job_categories">
-                    <div class="category">${job.role}</div>
-                    <div class="category">${job.level}</div>`;
+                    <div class="category" id="role">${job.role}</div>
+                    <div class="category" id="level">${job.level}</div>`;
                 job.languages.forEach((lang) => {
-                    output+= `<div class="category">${lang}</div>`;
+                    output+= `<div class="category" id="languages">${lang}</div>`;
                 });
                 job.tools.forEach((tool) => {
-                    output+= `<div class="category">${tool}</div>`;
+                    output+= `<div class="category" id="tools">${tool}</div>`;
                 });
                 output += `</div>
             </div>
@@ -66,21 +66,24 @@ function getJobs(a) {
 // Filter jobs by categories that are selected
 
 document.querySelector('main').addEventListener('click', selectCategory);
+const filterBar = document.querySelector('.filter_section');
+const filterCat = document.querySelector('.filter_categories');
+let arrayCategories = [];
 
 // Add category to filter bar
 
 function selectCategory(e) {
     if(e.target.classList.contains('category')) {
-        const filterBar = document.querySelector('.filter_section');
-        const filterCat = document.querySelector('.filter_categories');
 
         // If filter section empty, show filter bar and add category
         if(filterCat.hasChildNodes() == false) {
             filterBar.className = 'filter_section';
             const newCat = document.createElement('div');
             newCat.className = 'filtercategory';
+            newCat.id = e.target.id;
             newCat.innerHTML = `<span>${e.target.innerHTML}</span><img class="filter_button" src="./images/icon-remove.svg">`;
             filterCat.appendChild(newCat); 
+            arrayCategories.push(e.target.id);
         }
 
         // If not empty, check if selected category in already in the filter bar
@@ -88,16 +91,38 @@ function selectCategory(e) {
             if(filterCat.innerHTML.indexOf(e.target.innerHTML) == -1) {
                 const newCat = document.createElement('div');
                 newCat.className = 'filtercategory';
+                newCat.id = e.target.id;
                 newCat.innerHTML = `<span>${e.target.innerHTML}</span><img class="filter_button" src="./images/icon-remove.svg">`;
                 filterCat.appendChild(newCat);
+                arrayCategories.push(e.target.id);
             }
         }
-
-        // Check which categories are currently selected
-        const newJobs = JSON.parse(xhr.responseText);
-        console.log(newJobs);    
-        getJobs(newjobs);
+        console.log(arrayCategories);
+        const archive = JSON.parse(xhr.responseText);
+        console.log(archive);
+        getFilteredJobs();
     }
+}
+
+function getFilteredJobs(a) {
+    const filteredJobs = JSON.parse(xhr.responseText);
+
+    // Check which categories are currently selected
+    const filterCat = document.querySelector('.filter_categories');
+    let list = filteredJobs.filter(function(a) {
+        if(filterCat.innerHTML.indexOf(a.role) > 1 || filterCat.innerHTML.indexOf(a.level) > 1) {
+          return true;
+        }
+    })
+    console.log(list);
+    // list = list.languages.filter(function(a) {
+    
+    //     if(filterCat.innerHTML.indexOf(a.languages) > 1) {
+    //       return true;
+    //     }
+    // })
+    // console.log(list);
+
 }
 
 // Check which categories are currently selected
