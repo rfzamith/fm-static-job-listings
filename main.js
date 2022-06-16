@@ -56,6 +56,8 @@ function showJobs(a) {
         `;
     });
     document.querySelector('main').innerHTML += output;
+    console.log('Total Jobs: ' + a.length);
+
 }
 
 // Filter jobs by categories that are selected
@@ -97,7 +99,6 @@ function selectCategory(e) {
 }
 
 function getFilteredJobs() {
-
     // Check which categories are currently selected
     let list = JSON.parse(xhr.responseText);
     let filterCat = document.querySelector('.filter_categories').getElementsByTagName('div');
@@ -112,31 +113,39 @@ function getFilteredJobs() {
                 return filterCat[i].dataset.name == a.level;
             })
         }
-        // if(filterCat[i].dataset.cat == 'languages') {
-        //     list = filteredJobs.filter(function(a) {
-        //     for( e = 0; e < filteredJobs.languages.length; e++ ) {
-        //             return filterCat[i].dataset.name == a.languages[e];
-        //         }
-        //     })
-        // }
-        // }
-        console.log(list);
-        showJobs(list);
+        if(filterCat[i].dataset.cat == 'languages') {
+            list = list.filter(function(a) {
+                return a.languages.includes(filterCat[i].dataset.name) == true;
+            })
+        }
+        if(filterCat[i].dataset.cat == 'tools') {
+            list = list.filter(function(a) {
+                return a.tools.includes(filterCat[i].dataset.name) == true;
+            })
+        }
     }
+    showJobs(list);
 }
-// Check which categories are currently selected
-// Use filter method on xhr array to show jobs in selected categories
-// Use sort method to sort by job date
-// run getJobs()
 
-// Clear button
+// Filter bar clear button
 document.querySelector('.clear_button').addEventListener('click', clearJobs);
 function clearJobs() {
     filterBar.className = 'filter_section hidden';
     document.querySelector('.filter_categories').innerHTML = '';
     let list = JSON.parse(xhr.responseText);
     showJobs(list);
-
 }
 
-// Remove category
+// Remove category from filter bar
+document.querySelector('.filter_categories').addEventListener('click', removeCategory);
+function removeCategory(e) {
+    if(e.target.classList.contains('filter_button')) {
+        console.log(e.target.parentElement);
+        e.target.parentElement.remove();
+        if(document.querySelector('.filter_categories').innerHTML == '') {
+            clearJobs();
+        } else { 
+            getFilteredJobs();
+        }
+    }
+}
