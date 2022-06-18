@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/rfzamith/fm-static-job-listings/](https://github.com/rfzamith/fm-static-job-listings/)
-- Live Site URL: [https://rfzamith.github.io/fm-static-job-listings/](https://rfzamith.github.io/fm-static-job-listings/)
+- Solution URL: [https://github.com/rfzamith/fm-static-job-listings/](https://github.com/rfzamith/fm-static-job-listings/){:target="_blank"}
+- Live Site URL: [https://rfzamith.github.io/fm-static-job-listings/](https://rfzamith.github.io/fm-static-job-listings/){:target="_blank"}
 
 ## My process
 
@@ -53,5 +53,5 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Author
 
-- Website - [Rui Zamith](https://www.ruizamith.com)
-- Frontend Mentor - [@rfzamith](https://www.frontendmentor.io/profile/rfzamith)
+- Website - [Rui Zamith](https://www.ruizamith.com){:target="_blank"}
+- Frontend Mentor - [@rfzamith](https://www.frontendmentor.io/profile/rfzamith){:target="_blank"}
