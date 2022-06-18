@@ -53,5 +53,5 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Author
 
-- Website - [Rui Zamith](https://www.ruizamith.com)
+- Website - [https://www.ruizamith.com](https://www.ruizamith.com)
 - Frontend Mentor - [@rfzamith](https://www.frontendmentor.io/profile/rfzamith)
