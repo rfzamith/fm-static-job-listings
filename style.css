@@ -4,6 +4,12 @@
     header {
         background-image: url(images/bg-header-mobile.svg);
     }
+    .job {
+        margin-top: 2rem;
+    }
+    .job_logo {
+        margin-top: -3.5rem;
+    }
     .job_details {
         margin: 1rem 0;
     }
