@@ -16,8 +16,6 @@ This is a solution to the [Job listings with filtering challenge on Frontend Men
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -34,23 +32,18 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/rfzamith/fm-static-job-listings](https://github.com/rfzamith/fm-static-job-listings)
+- Live Site URL: [https://rfzamith.github.io/fm-static-job-listings/](https://rfzamith.github.io/fm-static-job-listings/)
 
 ## My process
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- HTML Semantic Elements
+- HTML Data Attributes
+- CSS Keyframes
+- CSS Flexbox
+- JavaScript
 
 ### What I learned
 
