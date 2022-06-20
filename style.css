@@ -182,6 +182,7 @@ main {
     padding-left: 0.4rem;
     height: 30px;
     animation: append-animate .3s linear;
+    /* animation: fadeIn2 1.1s; */
 }
 .filtercategory span {
     bottom: 30%;
